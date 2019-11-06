@@ -6,20 +6,19 @@ module.exports = async function (req, res) {
     }).then(r => {
         // check id exist
         if (r.count === 0) {
-            return res.send('not found');
+            return res.notFound();
         }
         // delete
         mdl.User.destroy({ where: { id: id } })
-            .then(r => {
-                res.json(r);
+            .then(result => {
+                res.success(result);
             })
-            .catch(e => {
-                res.send('error');
+            .catch(err => {
+                return res.serverError(err);
             })
 
-    }).catch(e => {
-        console.log(e);
-        return res.status(500).send('error');
+    }).catch(err => {
+        return res.serverError(err);
     })
 
 

@@ -5,14 +5,13 @@ module.exports = function (req, res) {
     const user = new User(body);
     const { valid, errors } = user.validate();
     if (!valid) {
-        console.log('[not validate]', errors);
-        return res.status(422).json(errors);
+        return res.invalidInput(errors);
     }
     mdl.User.create(user)
-        .then(r => {
-            res.send('success');
+        .then(result => {
+            res.success(result);
         })
-        .catch(e => {
-            res.send('error');
+        .catch(err => {
+            res.serverError(err);
         })
 }

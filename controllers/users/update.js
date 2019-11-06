@@ -6,27 +6,25 @@ module.exports = function (req, res) {
     const user = new User(body);
     const { valid, errors } = user.validate();
     if (!valid) {
-        console.log('[not validate]', errors);
-        return res.status(422).json(errors);
+        return res.invalidInput(errors);
     }
     mdl.User.findAndCountAll({
         where: { id: id }
     }).then(r => {
         // check id exist
         if (r.count === 0) {
-            return res.send('not found');
+            return res.notFound();
         }
         // delete
         mdl.User.update(user,{ where: { id: id } })
-            .then(r => {
-                res.json(r);
+            .then(result => {
+                res.success(result);
             })
             .catch(e => {
-                res.send('error');
+                res.serverError(err);
             })
 
     }).catch(e => {
-        console.log(e);
-        return res.status(500).send('error');
+        res.serverError(err);
     })
 }

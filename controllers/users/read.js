@@ -2,10 +2,13 @@ module.exports = function (req, res) {
     const mdl = require('../../models');
     const id = req.params.id;
     mdl.User.findByPk(id)
-        .then(r => {
-            res.json(r);
+        .then(result => {
+            if (!result) {
+                return res.notFound();
+            }
+            res.success(result);
         })
-        .catch(e => {
-            res.send('error');
+        .catch(err => {
+            res.serverError(err);
         })
 }
