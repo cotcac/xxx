@@ -1,6 +1,14 @@
-module.exports = async function (req, res) {
-    const mdl = require('../../models');
+const mdl = require('../../models');
+const User = require('../../domain/users');
+module.exports = function (req, res) {
     const id = req.params.id;
+    const body = req.body;
+    const user = new User(body);
+    const { valid, errors } = user.validate();
+    if (!valid) {
+        console.log('[not validate]', errors);
+        return res.status(422).json(errors);
+    }
     mdl.User.findAndCountAll({
         where: { id: id }
     }).then(r => {
@@ -9,7 +17,7 @@ module.exports = async function (req, res) {
             return res.send('not found');
         }
         // delete
-        mdl.User.destroy({ where: { id: id } })
+        mdl.User.update(user,{ where: { id: id } })
             .then(r => {
                 res.json(r);
             })
@@ -21,6 +29,4 @@ module.exports = async function (req, res) {
         console.log(e);
         return res.status(500).send('error');
     })
-
-
 }

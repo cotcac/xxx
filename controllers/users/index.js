@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/', require('./list'));
 router.post('/', require('./create'));
 router.delete('/:id', require('./delete'));
-// router.patch('/:id', validator, require('./edit'));
+router.put('/:id', require('./update'));
 router.get('/:id', require('./read'));
 
 module.exports = router;
