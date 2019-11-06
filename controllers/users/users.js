@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+const mdl = require("../../models")
 /* GET users listing. */
 // router.get('/', function(req, res, next) {
 //   res.send('respond with a resource');
@@ -8,7 +8,7 @@ var router = express.Router();
 
 // INSERT USERS.
 
-const User = require('../domain/users');
+const User = require('../../domain/users');
 // not work.
 router.get('/', function(req, res, next){
   const user = new User({
