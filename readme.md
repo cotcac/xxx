@@ -5,5 +5,7 @@ cp .env.example .env
 # Quick start
 ```
 npm i
+// run migration
+npx sequelize-cli db:migrate 
 nodemon bin/www
 ```

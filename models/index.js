@@ -9,7 +9,7 @@ const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
 
 let sequelize;
-if(process.env.NODE_ENV==='development'){
+if(process.env.NODE_ENV==='production'){
   sequelize = new Sequelize(
     config.database, config.username, config.password,
     {
@@ -32,16 +32,9 @@ if(process.env.NODE_ENV==='development'){
 }else{
   //development
   sequelize = new Sequelize(
-    config.database, config.username, config.password,
     {
-      host: process.env.DB_HOST,
-      dialect: process.env.DB_DIALECT,
-      pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-      }
+      dialect: 'sqlite',
+      storage: config.storage
     });
 
 }

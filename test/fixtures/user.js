@@ -1,7 +1,9 @@
 module.exports = {
     valid:{
         name:'Leo Messi',
-        age: 1990
+        age: 1990,
+        email:'leo@example.com',
+        password:'abcxyz'
     },
     unvalid1:{
         name:'x',// name less than 3
