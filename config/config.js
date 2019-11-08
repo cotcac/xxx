@@ -8,11 +8,8 @@ module.exports = {
     "dialect": process.env.DB_DIALECT
   },
   test: {
-    username: 'database_test',
-    password: null,
-    database: 'database_test',
-    host: '127.0.0.1',
-    dialect: 'mysql'
+    dialect: "sqlite",
+    storage: ":memory:"
   },
   production: {
     username: process.env.DB_USERNAME,

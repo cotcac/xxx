@@ -3,7 +3,7 @@ const { attributes } = require('structure');
 const User = attributes({
     name: {
       type: String,
-      minLength: 10
+      minLength: 3
     },
     age: {
       type: Number,

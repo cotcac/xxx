@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "NODE_ENV=test mocha test/bootstrap.js $(find test -name '*test.js') --exit"
   },
   "dependencies": {
+    "chai-http": "^4.3.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
@@ -16,9 +18,13 @@
     "pg-hstore": "^2.3.3",
     "redis": "^2.8.0",
     "sequelize": "^5.21.2",
+    "should": "^13.2.3",
+    "sqlite3": "^4.1.0",
     "structure": "^1.8.0"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
     "sequelize-cli": "^5.5.1"
   }
 }

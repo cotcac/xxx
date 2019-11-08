@@ -9,18 +9,42 @@ const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
 
 let sequelize;
-sequelize = new Sequelize(
-  config.database, config.username, config.password,
-  {
-    host: process.env.DB_HOST,
-    dialect: process.env.DB_DIALECT,
-    pool: {
-      max: 5,
-      min: 0,
-      acquire: 30000,
-      idle: 10000
-    }
+if(process.env.NODE_ENV==='development'){
+  sequelize = new Sequelize(
+    config.database, config.username, config.password,
+    {
+      host: process.env.DB_HOST,
+      dialect: process.env.DB_DIALECT,
+      pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+      }
+    });
+
+}else if(process.env.NODE_ENV==='test'){
+  sequelize = new Sequelize({
+    dialect: 'sqlite',
+    storage: config.storage
   });
+
+}else{
+  //development
+  sequelize = new Sequelize(
+    config.database, config.username, config.password,
+    {
+      host: process.env.DB_HOST,
+      dialect: process.env.DB_DIALECT,
+      pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+      }
+    });
+
+}
   sequelize.authenticate()
   .then(() => {
     console.log('Connection has been established successfully.');
