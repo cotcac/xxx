@@ -3,3 +3,5 @@ node_modules
 /data
 .env
 .nyc_output
+# exception to the rule
+!.gitkeep 
