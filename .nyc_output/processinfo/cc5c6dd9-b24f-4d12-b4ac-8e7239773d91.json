@@ -1,0 +1,1 @@
+{"uuid":"cc5c6dd9-b24f-4d12-b4ac-8e7239773d91","parent":null,"pid":2664,"argv":["/usr/local/bin/node","/usr/local/bin/npm","test"],"execArgv":[],"cwd":"/private/var/node/xxx","time":1573195194137,"ppid":2663,"root":"fea24045-3e29-42fd-90c3-8338a4a82963","coverageFilename":"/private/var/node/xxx/.nyc_output/cc5c6dd9-b24f-4d12-b4ac-8e7239773d91.json","files":[]}
