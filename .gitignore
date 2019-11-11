@@ -1,6 +1,7 @@
 node_modules
 /coverage
 /data
+/dirty_doc
 .env
 .nyc_output
 # exception to the rule

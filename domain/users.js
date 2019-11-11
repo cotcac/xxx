@@ -20,6 +20,12 @@ const User = attributes({
       type: String,
       required: true,
       minLength: 6
+    },
+    role: {
+      type: String,
+      required: true,
+      minLength: 3,
+      default: "user" // admin // worker
     }
   })(class User { });
   module.exports = User;
