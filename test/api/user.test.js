@@ -17,39 +17,28 @@ describe(`----------- ${model} routes----------------`, function () {
       limit: 1,
       raw: true
     }).then(data => {
-        console.log(data);
-        
       myItem = data[0];
+      // console.log(myItem);
+      
     })
   })
   after((done) => {
     done();
-  })
-  it(`List ${model}::`, async() => {
-    chai.request(server)
-      .get(`/${router}`)
-      .end(function (err,result) {
-        should.not.exist(err);
-        should.exist(result);
-        result.status.should.equal(200);
-        result.body.should.have.property('success');
-        result.body.should.have.property('message');
-        result.body.should.have.property('data');
-      })
-  })
+  });
+
   // Insert valid value
-  it(`Insert ${model}`, async() => {
+  it(`Insert ${model} valid`, async() => {
     chai.request(server)
       .post(`/${router}`)
-      .send(data.valid)
+      .send(data.valid2)
       .end(function (err, data) {
-          console.log(err);
-          
+        // console.log(data);
+        
         should.not.exist(err);
         should.exist(data);
         data.status.should.equal(200);
       })
-  })
+  });
   // insert unvalid value 1
   it(`Insert ${model} name less than 3 char long`, async() => {
     chai.request(server)
@@ -57,10 +46,60 @@ describe(`----------- ${model} routes----------------`, function () {
       .send(data.unvalid1)
       .end(function (err, data) {
         should.not.exist(err);
-        console.log(data.body);
         data.status.should.equal(422);
       })
-  })
+
+  });
+  it(`Insert ${model} incorrect email format`, async() => {
+    chai.request(server)
+      .post(`/${router}`)
+      .send(data.unvalid3)
+      .end(function (err, data) {
+        should.not.exist(err);
+        data.status.should.equal(422);
+      })
+
+  });
+  it(`Insert ${model} password too short`, async() => {
+    chai.request(server)
+      .post(`/${router}`)
+      .send(data.unvalid4)
+      .end(function (err, data) {
+        // console.log(data.body);
+        
+        should.not.exist(err);
+        data.status.should.equal(422);
+      })
+
+  });
+  it(`Insert ${model} email already exist!`, async() => {
+    chai.request(server)
+      .post(`/${router}`)
+      .send(data.unvalid5)
+      .end(function (err, data) {
+        console.log(data.body);
+        
+        should.not.exist(err);
+        data.status.should.equal(422);
+      })
+
+  });
+  it(`List ${router}::`, async() => {
+    chai.request(server)
+      .get('/users')
+      .end(function (err,result) {
+        // console.log(err);
+        
+        // console.log('[list===============]',result);
+        
+        should.not.exist(err);
+        should.exist(result);
+        result.status.should.equal(200);
+        result.body.should.have.property('success');
+        result.body.should.have.property('message');
+        result.body.should.have.property('data');
+      })
+  });
   // insert unvalid value 2
   it(`Insert ${model} Missing age`, async() => {
     chai.request(server)
@@ -68,7 +107,6 @@ describe(`----------- ${model} routes----------------`, function () {
       .send(data.unvalid2)
       .end(function (err, data) {
         should.not.exist(err);
-        console.log(data.body);
         data.status.should.equal(422);
       })
   })
@@ -84,14 +122,12 @@ describe(`----------- ${model} routes----------------`, function () {
       })
   })
   // Single
-  it('Single Role::', async() => {
+  it(`Single Role:: /${router}/1`, async() => {
     chai.request(server)
-      .get(`/${router}/${myItem.id}`)
+      .get(`/users/1`)
       .end(function (err, data) {
         should.not.exist(err);
         should.exist(data);
-        console.log(data.text);
-        
         data.status.should.equal(200);
       })
   })

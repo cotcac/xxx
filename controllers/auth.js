@@ -63,11 +63,11 @@ router.post('/login', async function (req, res, next) {
 });
 
 // protected route
-router.get('/protected', passport.authenticate('jwt', { session: false }), function(req, res) {
-  console.log('[request.user]',req.user);
+// router.get('/protected', passport.authenticate('jwt', { session: false }), function(req, res) {
+//   console.log('[request.user]',req.user);
   
-  res.json('Success! You can now see this without a token.');
-});
+//   res.json('Success! You can now see this without a token.');
+// });
 
 // logout
 router.get('/logout', function (req, res) {

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "NODE_ENV=test mocha test/bootstrap.js $(find test -name '*test.js') --exit",
+    "test": "NODE_ENV=test PORT=30 mocha test/bootstrap.js $(find test -name '*test.js') --exit",
     "coverage": "nyc --reporter html --reporter text npm test"
   },
   "dependencies": {

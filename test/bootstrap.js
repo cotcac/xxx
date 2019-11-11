@@ -1,9 +1,18 @@
 // before running test
 const mdl = require('../models');
 before(async () => {
-  await mdl.sequelize.sync({
-    force: true
-  })
+  try {
+    await mdl.sequelize.sync({
+      force: true
+    })
+    console.log('sync sucess');
+    
+  } catch (error) {
+    console.log(error);
+    
+    
+  }
+ 
 
 })
 // after all test done.

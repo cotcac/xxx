@@ -10,7 +10,7 @@ module.exports = async (skip, limit, url) => {
         try {
             // check redis
             const cache = await redis.get(url);
-            if(cache!=null){
+            if (cache != null) {
                 return res(JSON.parse(cache));
             }
             // at this point we know we dont have on cache. 
@@ -32,16 +32,16 @@ module.exports = async (skip, limit, url) => {
  */
 const getDB = (skip, limit) => {
     return new Promise((res, rej) => {
-        setTimeout(() => {
-            mdl.User.findAll({
-                offset: skip,
-                limit: limit,
-            }).then(data => {
-                return res(data);
-            }).catch(err => {
-                return rej(err);
-            })
-        }, 3000); 
+
+        mdl.User.findAll({
+            offset: skip,
+            limit: limit,
+        }).then(data => {
+            return res(data);
+        }).catch(err => {
+            return rej(err);
+        })
+
     })
 
 } 

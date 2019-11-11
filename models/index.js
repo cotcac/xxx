@@ -20,13 +20,15 @@ if(process.env.NODE_ENV==='production'){
         min: 0,
         acquire: 30000,
         idle: 10000
-      }
+      },
+     logging: false // disable logging; default: console.log
     });
 
 }else if(process.env.NODE_ENV==='test'){
   sequelize = new Sequelize({
     dialect: 'sqlite',
-    storage: config.storage
+    storage: config.storage,
+    logging: false
   });
 
 }else{
@@ -34,7 +36,8 @@ if(process.env.NODE_ENV==='production'){
   sequelize = new Sequelize(
     {
       dialect: 'sqlite',
-      storage: config.storage
+      storage: config.storage,
+      logging:false
     });
 
 }
