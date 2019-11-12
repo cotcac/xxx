@@ -21,3 +21,7 @@ npm run coverage
 ```
 Open browser
 {root}/coverage/index.html
+
+# Postman
+
+https://documenter.getpostman.com/view/7994605/SW7T8rPa?version=latest
