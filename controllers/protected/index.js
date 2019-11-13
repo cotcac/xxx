@@ -3,7 +3,7 @@ const router = express.Router();
 const verifyToken = require('../../helper/jwt');
 
 /* USER PROTECTED */
-router.get('/', verifyToken(), function(req, res, next){
+router.get('/', verifyToken(), function(req, res){
     res.send('send response with resource!')
 });
 

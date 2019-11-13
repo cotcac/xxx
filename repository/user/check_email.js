@@ -1,18 +1,15 @@
-module.exports = (email) => {
-    const mdl = require('../../models');
-    return new Promise(async (res, rej) => {
-        try {
-            const checkData = await mdl.User.findAndCountAll({
-                where: {
-                    email,
-                }, raw: true
-            });
-            res(checkData.count)
+module.exports = async (email) => {
+  const mdl = require('../../models');
+  try {
+    const checkData = await mdl.User.findAndCountAll({
+      where: {
+        email,
+      }, raw: true
+    });
+    return checkData.count;
 
-        } catch (error) {
-            rej(error)
+  } catch (error) {
+    throw new Error(error);
 
-        }
-
-    })
+  }
 }

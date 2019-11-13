@@ -20,11 +20,11 @@ module.exports = function (req, res) {
             .then(result => {
                 res.success(result);
             })
-            .catch(e => {
+            .catch(err => {
                 res.serverError(err);
             })
 
-    }).catch(e => {
+    }).catch(err => {
         res.serverError(err);
     })
 }
