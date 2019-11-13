@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "eslint":"eslint",
     "start": "node ./bin/www",
     "test": "NODE_ENV=test PORT=30 mocha test/bootstrap.js $(find test -name '*test.js') --exit",
     "coverage": "nyc --reporter html --reporter text npm test"
@@ -34,6 +35,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "eslint": "^6.6.0",
     "mocha": "^6.2.2",
     "nyc": "^14.1.1",
     "sequelize-cli": "^5.5.1"

@@ -6,7 +6,7 @@ cp .env.example .env
 ```
 npm i
 // run migration
-npx sequelize-cli db:migrate 
+npx sequelize-cli db:migrate
 nodemon bin/www
 ```
 
@@ -25,3 +25,9 @@ Open browser
 # Postman
 
 https://documenter.getpostman.com/view/7994605/SW7T8rPa?version=latest
+
+# Eslint
+
+```
+npm run -s eslint .
+```
