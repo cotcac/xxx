@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "eslint":"eslint",
+    "eslint": "eslint",
     "start": "node ./bin/www",
     "test": "NODE_ENV=test PORT=30 mocha test/bootstrap.js $(find test -name '*test.js') --exit",
     "coverage": "nyc --reporter html --reporter text npm test"
@@ -34,6 +34,7 @@
     "structure": "^1.8.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
     "chai": "^4.2.0",
     "eslint": "^6.6.0",
     "mocha": "^6.2.2",

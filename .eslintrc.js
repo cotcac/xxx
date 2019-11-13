@@ -6,6 +6,7 @@ module.exports = {
         "jsx": true
     }
   },
+  "parser": "babel-eslint",// need package for this
   "env": {
     "node": true,
     "es6": true

@@ -1,5 +1,5 @@
-var Redis = require("ioredis");
-var redis = new Redis();
+const Redis = require("ioredis");
+const redis = new Redis();
 //Incase any error pops up, log it
 redis.on("error", function(err) {
   console.log("Error " + err);
