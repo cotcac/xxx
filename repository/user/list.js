@@ -15,7 +15,7 @@ module.exports = async (skip, limit, url) => {
     // at this point we know we dont have on cache.
     const data = await getDB(skip, limit);
     // save data to cache.
-    redis.set(url, JSON.stringify(data), "EX", process.env.CACHE_TIME);
+    redis.set(url, JSON.stringify(data), "EX", process.env.CACHE_TIME || 10);
     return data;
   } catch (error) {
     throw new Error(error);
