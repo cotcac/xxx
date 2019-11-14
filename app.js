@@ -3,7 +3,9 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 // const logger = require('morgan');
 const logRequest = require("./helper/log_request");
+const cors = require("cors");
 const app = express();
+app.use(cors());
 require("dotenv").config();
 // set default enviroment
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
