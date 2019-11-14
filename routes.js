@@ -5,6 +5,10 @@ module.exports = function(app) {
   app.use("/", require("./controllers/auth"));
   app.use("/users", require("./controllers/users"));
 
+  // Other Service
+
+  app.use("/todos", require("./controllers/service_todos"));
+
   // admin
   app.use("/protected", require("./controllers/protected"));
 
