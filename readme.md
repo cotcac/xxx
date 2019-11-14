@@ -3,11 +3,27 @@
 cp .env.example .env
 ```
 # Quick start
+
+You need to have postgres server running first.
+
+## Docker
+
+```
+docker-compose build
+docker-compose up
+```
+
 ```
 npm i
 // run migration
 npx sequelize-cli db:migrate
 nodemon bin/www
+```
+# Migration
+If you change your database structure you need to remigration.
+```
+npx sequelize-cli db:migrate:undo
+npx sequelize-cli db:migrate
 ```
 
 # Test
