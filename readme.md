@@ -12,14 +12,14 @@ You need to have postgres server running first.
 docker-compose build
 docker-compose up
 ```
-
+## No docker
 ```
 npm i
 // run migration
 npx sequelize-cli db:migrate
 nodemon bin/www
 ```
-# Migration
+# Undo Migration
 If you change your database structure you need to remigration.
 ```
 npx sequelize-cli db:migrate:undo
