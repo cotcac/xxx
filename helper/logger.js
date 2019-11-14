@@ -1,11 +1,7 @@
 const { transports, createLogger, format } = require("winston");
 
 const logger = createLogger({
-  format: format.combine(
-    // format.timestamp(),
-    format.json(),
-    format.colorize()
-  ),
+  format: format.combine(format.timestamp(), format.json(), format.colorize()),
   transports: [
     // new transports.Console(),remove this
     new transports.File({

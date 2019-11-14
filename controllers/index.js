@@ -1,8 +1,20 @@
 const express = require("express");
 const router = express.Router();
+const { logger } = require("../helper/logger");
 /* GET home page. */
 router.get("/", function(req, res) {
-  res.send("PONG");
+  res.send("This message tell you that the app is healthy!!!");
+});
+// error examole
+router.get("/error", function(req, res, next) {
+  const fs = require("fs");
+  fs.readFile("/file-does-not-exist", function(err, data) {
+    if (err) {
+      next(err); // Pass errors to Express.
+    } else {
+      res.send(data);
+    }
+  });
 });
 // Reuse api response
 router.use(function(req, res, next) {
@@ -37,17 +49,18 @@ router.use(function(req, res, next) {
         pagination: {
           itemsPerPage: itemsPerPage,
           currentPageIndex: currentPage,
-          next: result.length >itemsPerPage ? true : false
+          next: result.length > itemsPerPage ? true : false
         }
       }
     });
   };
   //server error
   res.serverError = function(err = "Unknown Server error") {
+    logger.error(err.stack);
     return res.status(500).json({
       success: false,
       message: "Server Error",
-      data: process.env.NODE_ENV === 'development'? err : "", //hide err in production
+      data: process.env.NODE_ENV === "development" ? err : "" //hide err in production
     });
   };
   next();

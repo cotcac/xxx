@@ -2,7 +2,8 @@ node_modules
 /coverage
 /data/*
 /dirty_doc
+/logs
 .env
 /.nyc_output
 # exception to the rule
-!.gitkeep 
+!.gitkeep
