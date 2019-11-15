@@ -1,0 +1,8 @@
+/node_modules
+/migrations
+/seeders
+/logs
+/test
+/.nyc_output
+/coverage
+.eslintrc.js
