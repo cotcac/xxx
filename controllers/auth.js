@@ -48,17 +48,21 @@ router.post("/login", async function(req, res) {
   }
   const user = await mdl.User.findOne({ where: { email } });
   if (!user) {
-    return res.status(401).json({ message: "No such user found" });
+    return res
+      .status(422)
+      .json({ success: false, message: "No such user found" });
   }
   if (!bcrypt.compareSync(password, user.password)) {
-    return res.status(401).json({ msg: "Password is incorrect" });
+    return res
+      .status(422)
+      .json({ success: false, message: "Password is incorrect" });
   }
 
   // from now on we'll identify the user by the id and the id is the
   // only personalized value that goes into our token
   const payload = { id: user.id, role: user.role };
   const token = jwt.sign(payload, jwtOptions.secretOrKey, { expiresIn: "1h" });
-  res.json({ msg: "ok", token: token });
+  res.json({ success: true, token: token });
 });
 
 // protected route
